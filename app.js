@@ -62,6 +62,16 @@ app.use(session({
     saveUninitialized: true,
  }));
 
+// index
+app.get('/', (req, res, next) => {
+    res.render('index',
+        {
+            nama: 'Alya',
+            title: 'Webserver EJS',
+            layout: 'layout/main-layout',
+        });
+});
+
 // about
 app.get('/about', (req, res, next) => {
     res.render('about', { 
