@@ -11,6 +11,11 @@
                         <%= msg %> 
                       </div>
                 <% } %>
+                <% if (msg2.length !== 0) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= msg2 %> 
+                      </div>
+                <% } %>               
                 
                 <a class="btn btn-success btn-lg float-end" href="/contact/add" role="button"><i class="bi bi-file-earmark-plus-fill"></i> Tambah Contact</a>
                 <br>                

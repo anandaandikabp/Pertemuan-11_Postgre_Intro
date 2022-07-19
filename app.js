@@ -76,6 +76,7 @@ app.get('/contact', async (req, res) => {
         layout: 'layout/main-layout',
         contact,
         msg: req.flash('msg'),
+        msg2: req.flash('msg2'),
     });
 
 });
@@ -93,12 +94,16 @@ app.get('/contact/:name', async (req, res, next) => {
     // const contact = detailContact(req.params.name);
     const query = await pool.query(`SELECT * FROM contacts WHERE name = '${req.params.name}'`)
     const contact = query.rows[0];
-    res.render('detail', {
-        title: 'Laman Detail',
-        layout: 'layout/main-layout',
-        contact,
-    });
-    console.log(contact)
+    if (!contact) {
+        req.flash('msg2', 'Data tidak ditemukan!')
+        res.redirect('/contact')
+    } else {
+        res.render('detail', {
+            title: 'Laman Detail',
+            layout: 'layout/main-layout',
+            contact,
+        })        
+    }
 });
 
 // proses input data dengan validator
