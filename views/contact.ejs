@@ -1,0 +1,54 @@
+
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron">
+                <h1 class="display-4">Halaman Contact</h1>
+                <hr class="my-4">
+            </div>
+            <div class="col">
+                <% if (msg.length !== 0) { %>
+                    <div class="alert alert-success" role="alert">
+                        <%= msg %> 
+                      </div>
+                <% } %>
+                
+                <a class="btn btn-success btn-lg float-end" href="/contact/add" role="button"><i class="bi bi-file-earmark-plus-fill"></i> Tambah Contact</a>
+                <br>                
+                <h2>Contact List</h2>
+                <!-- menampilkan data dari app -->
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (contact.length>= 1) { %>
+                            <% contact.forEach((contact, i)=> { i++ %>
+                                <tr>
+                                    <th scope="row">
+                                        <%= i++ %>
+                                    </th>
+                                    <td>
+                                        <%= contact.name %>
+                                    </td>
+                                    <td>
+                                        <%= contact.email %>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary badge" href="/contact/<%= contact.name %> "
+                                            role="button">Detail</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>data tidak ditemukan</p>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
